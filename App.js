@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [courseGoals, setCourseGoals] = useState([]);
+  const [goals, setGoals] = useState([]);
 
   function startAddGoalHandler() {
     setModalIsVisible(true);
@@ -18,16 +18,16 @@ export default function App() {
   }
 
   function addGoalHandler(enteredGoalText) {
-    setCourseGoals((currentCourseGoals) => [
-      ...currentCourseGoals,
+    setGoals((currentGoals) => [
+      ...currentGoals,
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
     endAddGoalHandler();
   }
 
   function deleteGoalHandler(id) {
-    setCourseGoals((currentCourseGoals) => {
-      return currentCourseGoals.filter((goal) => goal.id !== id);
+    setGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.id !== id);
     });
   }
 
@@ -47,7 +47,7 @@ export default function App() {
         />
         <View style={styles.goalsContainer}>
           <FlatList
-            data={courseGoals}
+            data={goals}
             renderItem={(itemData) => {
               return (
                 <GoalItem
